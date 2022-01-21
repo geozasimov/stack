@@ -1,7 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-
 #include "stack.h"
 
 
@@ -9,7 +5,7 @@ int main()
 {
 	Stack stk = {};
 	int error = NULL;
-	StackCtor(&stk, 10);
+	StackCtor(&stk);
 
 
 	StackPush(&stk, 1);
