@@ -1,5 +1,9 @@
 #include "stack.h"
 
+static const int    START_CAPACITY = 10 ;
+static const int    CAPACITY_STEP = 2;
+static const size_t CANARY_CONSTANT = 0xDED32BAD;
+static const data_t*   UNAVAILABLE_ADR = (data_t*) 1;
 
 int errors = 0;
 

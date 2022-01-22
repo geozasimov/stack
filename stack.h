@@ -1,3 +1,4 @@
+#pragma once
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,11 +19,6 @@ typedef int data_t;
 
 typedef size_t canary_t;
 typedef size_t hash_t;
-
-extern const int    START_CAPACITY = 10 ;
-extern const int    CAPACITY_STEP = 2;
-extern const size_t CANARY_CONSTANT = 0xDED32BAD;
-extern const data_t*   UNAVAILABLE_ADR = (data_t*) 1;
 
 struct Stack
 {
