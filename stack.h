@@ -1,4 +1,3 @@
-#pragma once
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,13 +5,36 @@
 #include <assert.h>
 #include <limits.h>
 
-typedef double elem_t;
+#define FLOAT_DATA
+
+#ifdef FLOAT_DATA
+typedef double data_t;
+#endif
+
+#ifdef INT_DATA
+typedef int data_t;
+#endif
+
+
+typedef size_t canary_t;
+typedef size_t hash_t;
+
+extern const int    START_CAPACITY;
+extern const int    CAPACITY_STEP;
+extern const size_t CANARY_CONSTANT;
+extern const data_t*   UNAVAILABLE_ADR;
 
 struct Stack
 {
-	int size;
-	int capacity;
-	elem_t* data;
+	int 		size = 0;
+	int 		capacity = 0;
+	data_t* 	data;
+	hash_t  	hash = 0;
+
+	canary_t 	canary_left = 0;
+	canary_t 	canary_right = 0;
+
+
 };
 
 enum StackErrors
@@ -35,22 +57,76 @@ enum ResizeTypes
 	RESIZELARGER = 1
 };
 
-#define FLOAT_DATA
 
-#ifdef FLOAT_DATA
-typedef double data_t;
-#endif
+#define STACK_GENERAL_CHECK(check_function)             \
+do                                                      \
+{                                                       \
+    errors = 0;                                         \
+                                                        \
+    check_function;                                     \
+                                                        \
+    StackDump(stk, __FILE__, __FUNCTION__);           \
+                                                        \
+    if (errors != 0)                                    \
+    {                                                   \
+        return 1;                                       \
+    }                                                   \
+} while (0)
 
-#ifdef INT_DATA
-typedef int data_t;
-#endif
+#define STACK_RESIZE_ERROR_CHECK()                      \
+do                                                      \
+{                                                       \
+    errors = 0;                                         \
+                                                        \
+	StackErrorCheck(stk);	                            \
+                                                        \
+    StackDump(stk, __FILE__, __FUNCTION__);           \
+                                                        \
+    if (errors != 0)                                    \
+    {                                                   \
+        return nullptr;	                                \
+    }                                                   \
+} while (0)
+
+#define STACK_POP_ERROR_CHECK()                         \
+do                                                      \
+{                                                       \
+    errors = 0;                                         \
+                                                        \
+	StackErrorCheck(stk);				                \
+                                                        \
+    if (stk->size <= 0)                               \
+    {                                                   \
+        errors |= STK_UNDERFL;                          \
+    }                                                   \
+                                                        \
+    StackDump(stk, __FILE__, __FUNCTION__);           \
+                                                        \
+    if (errors != 0)                                    \
+    {                                                   \
+		return (data_t) 0xBEDABEDA;	                    \
+    }                                                   \
+} while (0)
 
 int StackCtor(Stack* stk);
+
 int StackDtor(Stack* stk);
-int StackResize(Stack* stk, bool mode);
-elem_t StackPush(Stack* stk, elem_t value);
-elem_t StackPop(Stack* stk);
-int StackCheck(Stack* stk);
-void StackDump (Stack* stack, const char* current_file, const char* current_function);
-size_t StackHash (Stack* stack);
+
+data_t* StackResize(Stack* stk);
+
+int StackPush(Stack* stk, data_t value);
+
+data_t StackPop(Stack* stk);
+
+int StackErrorCheck(Stack* stk);
+
+int StackCtorCheck (Stack* stk);
+
+int StackDtorCheck (Stack* stk);
+
+void StackDump (Stack* stk, const char* current_file, const char* current_function);
+
+size_t StackHash (Stack* stk);
+
+int DestroyStack(Stack* stk);
 
