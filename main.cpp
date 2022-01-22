@@ -4,7 +4,7 @@
 int main()
 {
 	Stack stk = {};
-	int error = NULL;
+	
 	StackCtor(&stk);
 
 

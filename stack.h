@@ -26,15 +26,13 @@ extern const data_t*   UNAVAILABLE_ADR;
 
 struct Stack
 {
-	int 		size = 0;
-	int 		capacity = 0;
+	int 		size;
+	int 		capacity;
 	data_t* 	data;
-	hash_t  	hash = 0;
+	hash_t  	hash;
 
-	canary_t 	canary_left = 0;
-	canary_t 	canary_right = 0;
-
-
+	canary_t 	canary_left;
+	canary_t 	canary_right;
 };
 
 enum StackErrors
