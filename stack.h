@@ -19,19 +19,20 @@ typedef int data_t;
 typedef size_t canary_t;
 typedef size_t hash_t;
 
-extern const int    START_CAPACITY;
-extern const int    CAPACITY_STEP;
-extern const size_t CANARY_CONSTANT;
-extern const data_t*   UNAVAILABLE_ADR;
+extern const int    START_CAPACITY = 10 ;
+extern const int    CAPACITY_STEP = 2;
+extern const size_t CANARY_CONSTANT = 0xDED32BAD;
+extern const data_t*   UNAVAILABLE_ADR = (data_t*) 1;
 
 struct Stack
 {
+	canary_t 	canary_left;
+	
 	int 		size;
 	int 		capacity;
 	data_t* 	data;
 	hash_t  	hash;
 
-	canary_t 	canary_left;
 	canary_t 	canary_right;
 };
 
@@ -49,11 +50,11 @@ enum StackErrors
 	CAPACITY_LARG_SIZE = 512,
 };
 
-enum ResizeTypes
-{
-	RESIZESMALLER = 0,
-	RESIZELARGER = 1
-};
+//enum ResizeTypes
+//{
+//	RESIZESMALLER = 0,
+//	RESIZELARGER = 1
+//};
 
 
 #define STACK_GENERAL_CHECK(check_function)             \
