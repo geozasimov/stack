@@ -225,7 +225,7 @@ int StackDtorCheck (Stack* stk)
 
 void StackDump (Stack* stk, const char* current_file, const char* current_function)
 {
-	FILE* dump_file = fopen("Dump.txt", "a"); //TODO передавать pid в имя файла
+	FILE* dump_file = fopen("Dump.txt", "a"); 
 
     if (errors != 0)
     {
@@ -292,7 +292,6 @@ void StackDump (Stack* stk, const char* current_file, const char* current_functi
                 current_file, current_function, errors & CAPACITY_LARG_SIZE);
     }
 
-    //TODO универсальная печать стека
     if (errors != 0)
     {
         fprintf(dump_file, "\n Stack: \n");
