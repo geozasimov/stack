@@ -45,8 +45,6 @@ int StackDtor(Stack* stk)
 {
     STACK_GENERAL_CHECK(StackDtorCheck(stk));
 
-    memset(stk, 0, stk->capacity * sizeof(data_t));
-
 #ifdef CANARY_DEFF
     stk->data = (data_t*)((canary_t*)stk->data - 1);
 #endif
@@ -61,6 +59,8 @@ int StackDtor(Stack* stk)
     stk->canary_left  = 0;
     stk->canary_right = 0;
 #endif
+
+    memset(stk, 0, stk->capacity * sizeof(data_t));
 
 	return 0;
 }
@@ -344,5 +344,45 @@ int DestroyStack(Stack* stk)
 {
     *(int*)&stk = 0;
     ((int*)&stk)[1] = 0;
+    return 0;
+}
+
+int StackAdd(Stack* stk)
+{
+    data_t a = StackPop(stk);
+    data_t b = StackPop(stk);
+
+    StackPush(stk, a + b);
+    
+    return 0;
+}
+
+int StackSub(Stack* stk)
+{
+    data_t a = StackPop(stk);
+    data_t b = StackPop(stk);
+
+    StackPush(stk, a - b);
+    
+    return 0;
+}
+
+int StackMul(Stack* stk)
+{
+    data_t a = StackPop(stk);
+    data_t b = StackPop(stk);
+
+    StackPush(stk, a * b);
+    
+    return 0;
+}
+
+int StackDiv(Stack* stk)
+{
+    data_t a = StackPop(stk);
+    data_t b = StackPop(stk);
+
+    StackPush(stk, a / b);
+    
     return 0;
 }

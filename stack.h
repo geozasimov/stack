@@ -125,3 +125,10 @@ size_t StackHash (Stack* stk);
 
 int DestroyStack(Stack* stk);
 
+int StackAdd(Stack* stk);
+
+int StackSub(Stack* stk);
+
+int StackMul(Stack* stk);
+
+int StackDiv(Stack* stk);
