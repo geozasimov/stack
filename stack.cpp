@@ -1,6 +1,6 @@
 #include "stack.h"
 
-static const int    START_CAPACITY = 10 ;
+static const int    START_CAPACITY = 1 ;
 static const int    CAPACITY_STEP = 2;
 static const size_t CANARY_CONSTANT = 0xDED32BAD;
 static const data_t*   UNAVAILABLE_ADR = (data_t*) 1;
@@ -32,13 +32,13 @@ int StackCtor(Stack* stk)
 
     stk->size = 0;
 
-    return 0;
-
 #ifdef HASH_DEFF
     stk->hash = StackHash(stk);
 #endif
 
     STACK_GENERAL_CHECK(StackErrorCheck(stk));
+
+    return 0;
 }
 
 int StackDtor(Stack* stk)
@@ -79,8 +79,7 @@ data_t* StackResize (Stack* stk)
 
         stk->data = (data_t*)((canary_t*)stk->data - 1);
 
-        new_adress = (data_t*) realloc(stk->data,
-                                       stk->capacity * sizeof(data_t) + 2 * sizeof(canary_t));
+        new_adress = (data_t*) realloc(stk->data, stk->capacity * sizeof(data_t) + 2 * sizeof(canary_t));
 
         ((canary_t*)new_adress)[0] = CANARY_CONSTANT;
 
@@ -88,8 +87,7 @@ data_t* StackResize (Stack* stk)
 
         *(canary_t*)(new_adress + stk->capacity) = CANARY_CONSTANT;
 #else
-        new_adress = (data_t*) realloc(stk->data,
-                                       (stk->capacity) * sizeof(data_t));
+        new_adress = (data_t*) realloc(stk->data, (stk->capacity) * sizeof(data_t));
 #endif
 	}
 	else if (stk->size * 2 * CAPACITY_STEP == stk->capacity)
@@ -115,8 +113,7 @@ data_t* StackResize (Stack* stk)
 #endif
     }
 
-    memset (new_adress + stk->size, (int)0,
-            (stk->capacity - stk->size) * sizeof(data_t));
+    memset (new_adress + stk->size, (int)0, (stk->capacity - stk->size) * sizeof(data_t));
 
     if (!new_adress)
         return stk->data;
@@ -128,8 +125,12 @@ int StackPush(Stack* stk, data_t value)
 {
     STACK_GENERAL_CHECK(StackErrorCheck(stk));
 
-    stk->data = StackResize(stk);
-    stk->data[stk -> size] = value;
+    if (stk->size >= stk->capacity)
+    {
+        stk->data = StackResize(stk);
+    }
+
+    stk->data[stk->size] = value;
     stk->size++;
     
 #ifdef HASH_DEFF
@@ -147,13 +148,19 @@ data_t StackPop(Stack* stk)
 
     stk->size--;
     data_t elem_pop = stk->data[stk->size];
-    stk->data = StackResize(stk);
 
-    STACK_GENERAL_CHECK(StackErrorCheck(stk));
+    if (stk->size >= stk->capacity)
+    {
+        stk->data = StackResize(stk);
+    }
+
+    
 
 #ifdef HASH_DEFF
     stk->hash = StackHash(stk);
 #endif    
+
+    STACK_GENERAL_CHECK(StackErrorCheck(stk));
 
     return elem_pop;
 }
@@ -340,10 +347,14 @@ size_t StackHash (Stack* stk)
     return hash;
 }
 
-int DestroyStack(Stack* stk)
+int StackDestroy(Stack* stk)
 {
     *(int*)&stk = 0;
     ((int*)&stk)[1] = 0;
+    stk->size = -1;
+    stk->capacity = -2;
+    stk->data = 0;
+
     return 0;
 }
 

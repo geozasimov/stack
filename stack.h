@@ -60,7 +60,7 @@ do                                                      \
                                                         \
     check_function;                                     \
                                                         \
-    StackDump(stk, __FILE__, __FUNCTION__);           \
+    StackDump(stk, __FILE__, __FUNCTION__);             \
                                                         \
     if (errors != 0)                                    \
     {                                                   \
@@ -75,7 +75,7 @@ do                                                      \
                                                         \
 	StackErrorCheck(stk);	                            \
                                                         \
-    StackDump(stk, __FILE__, __FUNCTION__);           \
+    StackDump(stk, __FILE__, __FUNCTION__);             \
                                                         \
     if (errors != 0)                                    \
     {                                                   \
@@ -90,12 +90,12 @@ do                                                      \
                                                         \
 	StackErrorCheck(stk);				                \
                                                         \
-    if (stk->size <= 0)                               \
+    if (stk->size <= 0)                                 \
     {                                                   \
         errors |= STK_UNDERFL;                          \
     }                                                   \
                                                         \
-    StackDump(stk, __FILE__, __FUNCTION__);           \
+    StackDump(stk, __FILE__, __FUNCTION__);             \
                                                         \
     if (errors != 0)                                    \
     {                                                   \
@@ -123,7 +123,7 @@ void StackDump (Stack* stk, const char* current_file, const char* current_functi
 
 size_t StackHash (Stack* stk);
 
-int DestroyStack(Stack* stk);
+int StackDestroy(Stack* stk);
 
 int StackAdd(Stack* stk);
 
