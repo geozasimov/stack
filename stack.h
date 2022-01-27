@@ -1,3 +1,4 @@
+//!@file
 #pragma once
 
 #include <stdio.h>
@@ -5,23 +6,6 @@
 #include <string.h>
 #include <assert.h>
 #include <limits.h>
-
-//------------------------------------------------
-//! Solves a square equation ax2 + bx + c = 0
-//!
-//! @param [in] a a-coefficient
-//! @param [in] b b-coefficient
-//! @param [in] c c-coefficient
-//! @param [out] x1 Pointer to the 1st root
-//! @param [out] x2 Pointer to the 2nd root
-//!
-//! @return Number of roots
-//!
-//! @note In case of infinite number of roots,
-//! returns @ref NUMBER_INF_ROOTS.
-//! Function changes x1 and x2, if Number of roots is not zero.
-//! The variable x1 contains a root less than x2.
-//------------------------------------------------
 
 //------------------------------------------------
 //! Define which specifies what type all elements on the stack are (in this case, the type is double).
@@ -91,6 +75,22 @@ struct Stack
 	canary_t 	canary_right;
 };
 
+//------------------------------------------------
+//! Enum which describes all error codes and their numbers.
+//!
+//! @param [in] STK_IS_NULL_PTR   
+//! @param [in] DATA_IS_NULL_PTR  
+//! @param [in] STK_DESTROYED     
+//! @param [in] STK_OVERFL        
+//! @param [in] STK_UNDERFL       
+//! @param [in] STK_DOUBLE_CTED   
+//! @param [in] STRCT_CANARY_BAD  
+//! @param [in] DATA_CANARY_BAD   
+//! @param [in] HASH_BAD          
+//! @param [in] CAPACITY_LARG_SIZE
+//!
+//------------------------------------------------
+
 enum StackErrors
 {
 	STK_IS_NULL_PTR    = 1,
@@ -111,6 +111,10 @@ enum StackErrors
 //	RESIZELARGER = 1
 //};
 
+//------------------------------------------------
+//! Define which describes the general check of the stack.
+//!
+//------------------------------------------------
 
 #define STACK_GENERAL_CHECK(check_function)             \
 do                                                      \
@@ -127,6 +131,11 @@ do                                                      \
     }                                                   \
 } while (0)
 
+//------------------------------------------------
+//! Define which describes a general stack check during stack resizing.
+//!
+//------------------------------------------------
+
 #define STACK_RESIZE_ERROR_CHECK()                      \
 do                                                      \
 {                                                       \
@@ -141,6 +150,11 @@ do                                                      \
         return nullptr;	                                \
     }                                                   \
 } while (0)
+
+//------------------------------------------------
+//! Define which describes the general check of the stack during the poping of the element.
+//!
+//------------------------------------------------
 
 #define STACK_POP_ERROR_CHECK()                         \
 do                                                      \
@@ -162,34 +176,143 @@ do                                                      \
     }                                                   \
 } while (0)
 
+//------------------------------------------------
+//! Function that describes the stack constructor.
+//!
+//! @param [in] stk stk-stack pointer
+//!
+//! @return zero
+//!
+//------------------------------------------------
+
 int StackCtor(Stack* stk);
+
+//------------------------------------------------
+//! Function that describes the stack destructor.
+//!
+//! @param [in] stk stk-stack pointer
+//!
+//! @return zero
+//!
+//------------------------------------------------
 
 int StackDtor(Stack* stk);
 
+//------------------------------------------------
+//! Function that describes the process of changing the stack size.
+//!
+//! @param [in] stk stk-stack pointer
+//! @param [out] new_adress new_adress-new stack pointer
+//!
+//! @return new stack pointer
+//!
+//------------------------------------------------
+
 data_t* StackResize(Stack* stk);
+
+//------------------------------------------------
+//! Function that describes the process of pushing an element onto the stack.
+//!
+//! @param [in] stk stk-stack pointer
+//! @param [in] value value-value of the element that is pushed onto the stack
+//!
+//! @return zero
+//!
+//------------------------------------------------
 
 int StackPush(Stack* stk, data_t value);
 
+//------------------------------------------------
+//! Function that describes the process of popping the value of an element from the top of the stack.
+//!
+//! @param [in] stk stk-stack pointer
+//! @param [out]  data_pop data_pop-value of the element that is popped from the top of the stack
+//!
+//! @return value of the element that is popped from the top of the stack
+//!
+//------------------------------------------------
+
 data_t StackPop(Stack* stk);
+
+//------------------------------------------------
+//! Function that describes the process of checking the stack.
+//!
+//! @param [in] stk stk-stack pointer
+//! @param [out] Errors Error-number of errors in the stack
+//!
+//! @return number of errors in the stack
+//!
+//------------------------------------------------
 
 int StackErrorCheck(Stack* stk);
 
+//------------------------------------------------
+//! Function that describes the process of checking the stack while the constructor is running.
+//!
+//! @param [in] stk stk-stack pointer
+//!
+//! @return zero
+//!
+//------------------------------------------------
+
 int StackCtorCheck (Stack* stk);
+
+//------------------------------------------------
+//! Function that describes the process of checking the stack while the destructor is running.
+//!
+//! @param [in] stk stk-stack pointer
+//!
+//! @return zero
+//!
+//------------------------------------------------
 
 int StackDtorCheck (Stack* stk);
 
+//------------------------------------------------
+//! Function that writes all errors to the Dump.txt file.
+//!
+//! @param [in] stk stk-stack pointer
+//! @param [in] current_file-the file in which the error occurred
+//! @param [in] current_function-the function in which the error occurred
+//!
+//! @return nothing
+//!
+//------------------------------------------------
+
 void StackDump (Stack* stk, const char* current_file, const char* current_function);
+
+//------------------------------------------------
+//! Function that describes the stack hashing process.
+//!
+//! @param [in] stk stk-stack pointer
+//! @param [out] hash hash-stack hash value
+//!
+//! @return stack hash value
+//!
+//------------------------------------------------
 
 size_t StackHash (Stack* stk);
 
+//------------------------------------------------
+//! Function that describes the process of hashing a separate piece of memory.
+//!
+//! @param [in] memory memory-pointer to memory area
+//! @param [in] size_memory size_memory-memory area size
+//! @param [out] hash hash-memory area hash values
+//!
+//! @return memory area hash values
+//!
+//------------------------------------------------
+
 size_t Hash (void* memory, size_t size_memory);
 
+//------------------------------------------------
+//! Function that describes the stack breaking process.
+//!
+//! @param [in] stk stk-stack pointer
+//!
+//! @return nothing
+//!
+//------------------------------------------------
+
 int StackDestroy(Stack* stk);
-
-int StackAdd(Stack* stk);
-
-int StackSub(Stack* stk);
-
-int StackMul(Stack* stk);
-
-int StackDiv(Stack* stk);

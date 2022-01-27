@@ -1,0 +1,437 @@
+\hypertarget{stack_8h}{}\doxysection{stack.\+h File Reference}
+\label{stack_8h}\index{stack.h@{stack.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_stack}{Stack}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{stack_8h_ad51045682cc2d07479d20c37811597fd}{FLOAT\+\_\+\+DATA}}
+\item 
+\#define \mbox{\hyperlink{stack_8h_a95fcce5c037b01eccd60ff69f0a2dbbc}{STACK\+\_\+\+GENERAL\+\_\+\+CHECK}}(check\+\_\+function)
+\item 
+\#define \mbox{\hyperlink{stack_8h_a5b1e6969b82616913dac30dbb0f9baad}{STACK\+\_\+\+RESIZE\+\_\+\+ERROR\+\_\+\+CHECK}}()
+\item 
+\#define \mbox{\hyperlink{stack_8h_a80d2c52fe82809462ddc93e203d2e1b2}{STACK\+\_\+\+POP\+\_\+\+ERROR\+\_\+\+CHECK}}()
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef double \mbox{\hyperlink{stack_8h_ae08b1e8a0b68c4dd03930dcb7eee61c6}{data\+\_\+t}}
+\item 
+typedef size\+\_\+t \mbox{\hyperlink{stack_8h_a075d12d64edef93bf5fcc862a22d26bc}{canary\+\_\+t}}
+\item 
+typedef size\+\_\+t \mbox{\hyperlink{stack_8h_a22abcc9bf71a7679d5f9076b8b6b33bb}{hash\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{stack_8h_a50999f718422c8c29775b73fe9c226a9}{Stack\+Errors}} \{ \newline
+{\bfseries STK\+\_\+\+IS\+\_\+\+NULL\+\_\+\+PTR} = 1
+, {\bfseries DATA\+\_\+\+IS\+\_\+\+NULL\+\_\+\+PTR} = 2
+, {\bfseries STK\+\_\+\+DESTROYED} = 4
+, {\bfseries STK\+\_\+\+OVERFL} = 8
+, \newline
+{\bfseries STK\+\_\+\+UNDERFL} = 16
+, {\bfseries STK\+\_\+\+DOUBLE\+\_\+\+CTED} = 32
+, {\bfseries STRCT\+\_\+\+CANARY\+\_\+\+BAD} = 64
+, {\bfseries DATA\+\_\+\+CANARY\+\_\+\+BAD} = 128
+, \newline
+{\bfseries HASH\+\_\+\+BAD} = 256
+, {\bfseries CAPACITY\+\_\+\+LARG\+\_\+\+SIZE} = 512
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{stack_8h_a4366c706d1f6681403ad3aca6f5862b9}{Stack\+Ctor}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stk)
+\item 
+int \mbox{\hyperlink{stack_8h_a38a4ef1398a57244832c5f1c3c3e41a1}{Stack\+Dtor}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stk)
+\item 
+\mbox{\hyperlink{stack_8h_ae08b1e8a0b68c4dd03930dcb7eee61c6}{data\+\_\+t}} $\ast$ \mbox{\hyperlink{stack_8h_aeaeee41154fe8a104eb03786666f85b1}{Stack\+Resize}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stk)
+\item 
+int \mbox{\hyperlink{stack_8h_aa254a8caee5e3c7c02f24d17973aff42}{Stack\+Push}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stk, \mbox{\hyperlink{stack_8h_ae08b1e8a0b68c4dd03930dcb7eee61c6}{data\+\_\+t}} value)
+\item 
+\mbox{\hyperlink{stack_8h_ae08b1e8a0b68c4dd03930dcb7eee61c6}{data\+\_\+t}} \mbox{\hyperlink{stack_8h_ae0c3fc3bcee4961ad335bd3f29f2486d}{Stack\+Pop}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stk)
+\item 
+int \mbox{\hyperlink{stack_8h_aa0820cc7865cc774dee4c1b91a03b526}{Stack\+Error\+Check}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stk)
+\item 
+int \mbox{\hyperlink{stack_8h_a5cf51611fd576bab5f69ac3ebdcd00eb}{Stack\+Ctor\+Check}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stk)
+\item 
+int \mbox{\hyperlink{stack_8h_aa1cc299bfda8321190cb9c5a453596ec}{Stack\+Dtor\+Check}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stk)
+\item 
+void \mbox{\hyperlink{stack_8h_ab66d4138457970bbde375644a3271081}{Stack\+Dump}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stk, const char $\ast$current\+\_\+file, const char $\ast$current\+\_\+function)
+\item 
+size\+\_\+t \mbox{\hyperlink{stack_8h_a3a347a7f9e029a59c831b82475b22933}{Stack\+Hash}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stk)
+\item 
+size\+\_\+t \mbox{\hyperlink{stack_8h_a30fbde2c3ee136f6f7abf8d9a55986fb}{Hash}} (void $\ast$memory, size\+\_\+t size\+\_\+memory)
+\item 
+int \mbox{\hyperlink{stack_8h_a62ff98d4d8bd620057244cd5f51c2621}{Stack\+Destroy}} (\mbox{\hyperlink{struct_stack}{Stack}} $\ast$stk)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{stack_8h_ad51045682cc2d07479d20c37811597fd}\label{stack_8h_ad51045682cc2d07479d20c37811597fd}} 
+\index{stack.h@{stack.h}!FLOAT\_DATA@{FLOAT\_DATA}}
+\index{FLOAT\_DATA@{FLOAT\_DATA}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{FLOAT\_DATA}{FLOAT\_DATA}}
+{\footnotesize\ttfamily \#define FLOAT\+\_\+\+DATA}
+
+Define which specifies what type all elements on the stack are (in this case, the type is double). \mbox{\Hypertarget{stack_8h_a95fcce5c037b01eccd60ff69f0a2dbbc}\label{stack_8h_a95fcce5c037b01eccd60ff69f0a2dbbc}} 
+\index{stack.h@{stack.h}!STACK\_GENERAL\_CHECK@{STACK\_GENERAL\_CHECK}}
+\index{STACK\_GENERAL\_CHECK@{STACK\_GENERAL\_CHECK}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{STACK\_GENERAL\_CHECK}{STACK\_GENERAL\_CHECK}}
+{\footnotesize\ttfamily \#define STACK\+\_\+\+GENERAL\+\_\+\+CHECK(\begin{DoxyParamCaption}\item[{}]{check\+\_\+function }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                                      \(\backslash\)}
+\DoxyCodeLine{\{                                                       \(\backslash\)}
+\DoxyCodeLine{    Errors = 0;                                         \(\backslash\)}
+\DoxyCodeLine{                                                        \(\backslash\)}
+\DoxyCodeLine{    check\_function;                                     \mbox{\hyperlink{stack_8h_ab66d4138457970bbde375644a3271081}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{stack_8h_ab66d4138457970bbde375644a3271081}{                                                        \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{stack_8h_ab66d4138457970bbde375644a3271081}{    StackDump}}(stk, \_\_FILE\_\_, \_\_FUNCTION\_\_);             \(\backslash\)}
+\DoxyCodeLine{                                                        \(\backslash\)}
+\DoxyCodeLine{    if (Errors != 0)                                    \(\backslash\)}
+\DoxyCodeLine{    \{                                                   \(\backslash\)}
+\DoxyCodeLine{        return 1;                                       \(\backslash\)}
+\DoxyCodeLine{    \}                                                   \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+Define which describes the general check of the stack. \mbox{\Hypertarget{stack_8h_a80d2c52fe82809462ddc93e203d2e1b2}\label{stack_8h_a80d2c52fe82809462ddc93e203d2e1b2}} 
+\index{stack.h@{stack.h}!STACK\_POP\_ERROR\_CHECK@{STACK\_POP\_ERROR\_CHECK}}
+\index{STACK\_POP\_ERROR\_CHECK@{STACK\_POP\_ERROR\_CHECK}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{STACK\_POP\_ERROR\_CHECK}{STACK\_POP\_ERROR\_CHECK}}
+{\footnotesize\ttfamily \#define STACK\+\_\+\+POP\+\_\+\+ERROR\+\_\+\+CHECK(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                                      \(\backslash\)}
+\DoxyCodeLine{\{                                                       \(\backslash\)}
+\DoxyCodeLine{    Errors = 0;                                         \mbox{\hyperlink{stack_8h_aa0820cc7865cc774dee4c1b91a03b526}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{stack_8h_aa0820cc7865cc774dee4c1b91a03b526}{                                                        \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{stack_8h_aa0820cc7865cc774dee4c1b91a03b526}{    StackErrorCheck}}(stk);                               \(\backslash\)}
+\DoxyCodeLine{                                                        \(\backslash\)}
+\DoxyCodeLine{    if (stk-\/>size <= 0)                                 \(\backslash\)}
+\DoxyCodeLine{    \{                                                   \(\backslash\)}
+\DoxyCodeLine{        Errors |= STK\_UNDERFL;                          \(\backslash\)}
+\DoxyCodeLine{    \}                                                   \mbox{\hyperlink{stack_8h_ab66d4138457970bbde375644a3271081}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{stack_8h_ab66d4138457970bbde375644a3271081}{                                                        \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{stack_8h_ab66d4138457970bbde375644a3271081}{    StackDump}}(stk, \_\_FILE\_\_, \_\_FUNCTION\_\_);             \(\backslash\)}
+\DoxyCodeLine{                                                        \(\backslash\)}
+\DoxyCodeLine{    if (Errors != 0)                                    \(\backslash\)}
+\DoxyCodeLine{    \{                                                   \(\backslash\)}
+\DoxyCodeLine{        return (\mbox{\hyperlink{stack_8h_ae08b1e8a0b68c4dd03930dcb7eee61c6}{data\_t}}) 0xBEDABEDA;                       \(\backslash\)}
+\DoxyCodeLine{    \}                                                   \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+Define which describes the general check of the stack during the poping of the element. \mbox{\Hypertarget{stack_8h_a5b1e6969b82616913dac30dbb0f9baad}\label{stack_8h_a5b1e6969b82616913dac30dbb0f9baad}} 
+\index{stack.h@{stack.h}!STACK\_RESIZE\_ERROR\_CHECK@{STACK\_RESIZE\_ERROR\_CHECK}}
+\index{STACK\_RESIZE\_ERROR\_CHECK@{STACK\_RESIZE\_ERROR\_CHECK}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{STACK\_RESIZE\_ERROR\_CHECK}{STACK\_RESIZE\_ERROR\_CHECK}}
+{\footnotesize\ttfamily \#define STACK\+\_\+\+RESIZE\+\_\+\+ERROR\+\_\+\+CHECK(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                                      \(\backslash\)}
+\DoxyCodeLine{\{                                                       \(\backslash\)}
+\DoxyCodeLine{    Errors = 0;                                         \mbox{\hyperlink{stack_8h_aa0820cc7865cc774dee4c1b91a03b526}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{stack_8h_aa0820cc7865cc774dee4c1b91a03b526}{                                                        \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{stack_8h_aa0820cc7865cc774dee4c1b91a03b526}{    StackErrorCheck}}(stk);                               \mbox{\hyperlink{stack_8h_ab66d4138457970bbde375644a3271081}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{stack_8h_ab66d4138457970bbde375644a3271081}{                                                        \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{stack_8h_ab66d4138457970bbde375644a3271081}{    StackDump}}(stk, \_\_FILE\_\_, \_\_FUNCTION\_\_);             \(\backslash\)}
+\DoxyCodeLine{                                                        \(\backslash\)}
+\DoxyCodeLine{    if (Errors != 0)                                    \(\backslash\)}
+\DoxyCodeLine{    \{                                                   \(\backslash\)}
+\DoxyCodeLine{        return \textcolor{keyword}{nullptr};                                 \(\backslash\)}
+\DoxyCodeLine{    \}                                                   \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+Define which describes a general stack check during stack resizing. 
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{stack_8h_a075d12d64edef93bf5fcc862a22d26bc}\label{stack_8h_a075d12d64edef93bf5fcc862a22d26bc}} 
+\index{stack.h@{stack.h}!canary\_t@{canary\_t}}
+\index{canary\_t@{canary\_t}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{canary\_t}{canary\_t}}
+{\footnotesize\ttfamily typedef size\+\_\+t \mbox{\hyperlink{stack_8h_a075d12d64edef93bf5fcc862a22d26bc}{canary\+\_\+t}}}
+
+Typedef which specifies that the type of all elements on the stack is int. Typedef which indicates what type of canary is. \mbox{\Hypertarget{stack_8h_ae08b1e8a0b68c4dd03930dcb7eee61c6}\label{stack_8h_ae08b1e8a0b68c4dd03930dcb7eee61c6}} 
+\index{stack.h@{stack.h}!data\_t@{data\_t}}
+\index{data\_t@{data\_t}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{data\_t}{data\_t}}
+{\footnotesize\ttfamily typedef double \mbox{\hyperlink{stack_8h_ae08b1e8a0b68c4dd03930dcb7eee61c6}{data\+\_\+t}}}
+
+Typedef which specifies that the type of all elements on the stack is float. \mbox{\Hypertarget{stack_8h_a22abcc9bf71a7679d5f9076b8b6b33bb}\label{stack_8h_a22abcc9bf71a7679d5f9076b8b6b33bb}} 
+\index{stack.h@{stack.h}!hash\_t@{hash\_t}}
+\index{hash\_t@{hash\_t}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{hash\_t}{hash\_t}}
+{\footnotesize\ttfamily typedef size\+\_\+t \mbox{\hyperlink{stack_8h_a22abcc9bf71a7679d5f9076b8b6b33bb}{hash\+\_\+t}}}
+
+Typedef which indicates what type of hash is. 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{stack_8h_a50999f718422c8c29775b73fe9c226a9}\label{stack_8h_a50999f718422c8c29775b73fe9c226a9}} 
+\index{stack.h@{stack.h}!StackErrors@{StackErrors}}
+\index{StackErrors@{StackErrors}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{StackErrors}{StackErrors}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{stack_8h_a50999f718422c8c29775b73fe9c226a9}{Stack\+Errors}}}
+
+Enum which describes all error codes and their numbers.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em STK\+\_\+\+IS\+\_\+\+NULL\+\_\+\+PTR} & ~\newline
+ \\
+\hline
+\mbox{\texttt{ in}}  & {\em DATA\+\_\+\+IS\+\_\+\+NULL\+\_\+\+PTR} & ~\newline
+ \\
+\hline
+\mbox{\texttt{ in}}  & {\em STK\+\_\+\+DESTROYED} & ~\newline
+ \\
+\hline
+\mbox{\texttt{ in}}  & {\em STK\+\_\+\+OVERFL} & ~\newline
+ \\
+\hline
+\mbox{\texttt{ in}}  & {\em STK\+\_\+\+UNDERFL} & ~\newline
+ \\
+\hline
+\mbox{\texttt{ in}}  & {\em STK\+\_\+\+DOUBLE\+\_\+\+CTED} & ~\newline
+ \\
+\hline
+\mbox{\texttt{ in}}  & {\em STRCT\+\_\+\+CANARY\+\_\+\+BAD} & ~\newline
+ \\
+\hline
+\mbox{\texttt{ in}}  & {\em DATA\+\_\+\+CANARY\+\_\+\+BAD} & ~\newline
+ \\
+\hline
+\mbox{\texttt{ in}}  & {\em HASH\+\_\+\+BAD} & ~\newline
+ \\
+\hline
+\mbox{\texttt{ in}}  & {\em CAPACITY\+\_\+\+LARG\+\_\+\+SIZE} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{stack_8h_a30fbde2c3ee136f6f7abf8d9a55986fb}\label{stack_8h_a30fbde2c3ee136f6f7abf8d9a55986fb}} 
+\index{stack.h@{stack.h}!Hash@{Hash}}
+\index{Hash@{Hash}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{Hash()}{Hash()}}
+{\footnotesize\ttfamily size\+\_\+t Hash (\begin{DoxyParamCaption}\item[{void $\ast$}]{memory,  }\item[{size\+\_\+t}]{size\+\_\+memory }\end{DoxyParamCaption})}
+
+Function that describes the process of hashing a separate piece of memory.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em memory} & memory-\/pointer to memory area \\
+\hline
+\mbox{\texttt{ in}}  & {\em size\+\_\+memory} & size\+\_\+memory-\/memory area size \\
+\hline
+\mbox{\texttt{ out}}  & {\em hash} & hash-\/memory area hash values\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+memory area hash values 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stack_8h_a4366c706d1f6681403ad3aca6f5862b9}\label{stack_8h_a4366c706d1f6681403ad3aca6f5862b9}} 
+\index{stack.h@{stack.h}!StackCtor@{StackCtor}}
+\index{StackCtor@{StackCtor}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{StackCtor()}{StackCtor()}}
+{\footnotesize\ttfamily int Stack\+Ctor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_stack}{Stack}} $\ast$}]{stk }\end{DoxyParamCaption})}
+
+Function that describes the stack constructor.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em stk} & stk-\/stack pointer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stack_8h_a5cf51611fd576bab5f69ac3ebdcd00eb}\label{stack_8h_a5cf51611fd576bab5f69ac3ebdcd00eb}} 
+\index{stack.h@{stack.h}!StackCtorCheck@{StackCtorCheck}}
+\index{StackCtorCheck@{StackCtorCheck}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{StackCtorCheck()}{StackCtorCheck()}}
+{\footnotesize\ttfamily int Stack\+Ctor\+Check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_stack}{Stack}} $\ast$}]{stk }\end{DoxyParamCaption})}
+
+Function that describes the process of checking the stack while the constructor is running.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em stk} & stk-\/stack pointer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stack_8h_a62ff98d4d8bd620057244cd5f51c2621}\label{stack_8h_a62ff98d4d8bd620057244cd5f51c2621}} 
+\index{stack.h@{stack.h}!StackDestroy@{StackDestroy}}
+\index{StackDestroy@{StackDestroy}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{StackDestroy()}{StackDestroy()}}
+{\footnotesize\ttfamily int Stack\+Destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_stack}{Stack}} $\ast$}]{stk }\end{DoxyParamCaption})}
+
+Function that describes the stack breaking process.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em stk} & stk-\/stack pointer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stack_8h_a38a4ef1398a57244832c5f1c3c3e41a1}\label{stack_8h_a38a4ef1398a57244832c5f1c3c3e41a1}} 
+\index{stack.h@{stack.h}!StackDtor@{StackDtor}}
+\index{StackDtor@{StackDtor}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{StackDtor()}{StackDtor()}}
+{\footnotesize\ttfamily int Stack\+Dtor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_stack}{Stack}} $\ast$}]{stk }\end{DoxyParamCaption})}
+
+Function that describes the stack destructor.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em stk} & stk-\/stack pointer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stack_8h_aa1cc299bfda8321190cb9c5a453596ec}\label{stack_8h_aa1cc299bfda8321190cb9c5a453596ec}} 
+\index{stack.h@{stack.h}!StackDtorCheck@{StackDtorCheck}}
+\index{StackDtorCheck@{StackDtorCheck}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{StackDtorCheck()}{StackDtorCheck()}}
+{\footnotesize\ttfamily int Stack\+Dtor\+Check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_stack}{Stack}} $\ast$}]{stk }\end{DoxyParamCaption})}
+
+Function that describes the process of checking the stack while the destructor is running.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em stk} & stk-\/stack pointer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stack_8h_ab66d4138457970bbde375644a3271081}\label{stack_8h_ab66d4138457970bbde375644a3271081}} 
+\index{stack.h@{stack.h}!StackDump@{StackDump}}
+\index{StackDump@{StackDump}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{StackDump()}{StackDump()}}
+{\footnotesize\ttfamily void Stack\+Dump (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_stack}{Stack}} $\ast$}]{stk,  }\item[{const char $\ast$}]{current\+\_\+file,  }\item[{const char $\ast$}]{current\+\_\+function }\end{DoxyParamCaption})}
+
+Function that writes all errors to the Dump.\+txt file.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em stk} & stk-\/stack pointer \\
+\hline
+\mbox{\texttt{ in}}  & {\em current\+\_\+file-\/the} & file in which the error occurred \\
+\hline
+\mbox{\texttt{ in}}  & {\em current\+\_\+function-\/the} & function in which the error occurred\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stack_8h_aa0820cc7865cc774dee4c1b91a03b526}\label{stack_8h_aa0820cc7865cc774dee4c1b91a03b526}} 
+\index{stack.h@{stack.h}!StackErrorCheck@{StackErrorCheck}}
+\index{StackErrorCheck@{StackErrorCheck}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{StackErrorCheck()}{StackErrorCheck()}}
+{\footnotesize\ttfamily int Stack\+Error\+Check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_stack}{Stack}} $\ast$}]{stk }\end{DoxyParamCaption})}
+
+Function that describes the process of checking the stack.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em stk} & stk-\/stack pointer \\
+\hline
+\mbox{\texttt{ out}}  & {\em Errors} & Error-\/number of errors in the stack\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of errors in the stack 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stack_8h_a3a347a7f9e029a59c831b82475b22933}\label{stack_8h_a3a347a7f9e029a59c831b82475b22933}} 
+\index{stack.h@{stack.h}!StackHash@{StackHash}}
+\index{StackHash@{StackHash}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{StackHash()}{StackHash()}}
+{\footnotesize\ttfamily size\+\_\+t Stack\+Hash (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_stack}{Stack}} $\ast$}]{stk }\end{DoxyParamCaption})}
+
+Function that describes the stack hashing process.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em stk} & stk-\/stack pointer \\
+\hline
+\mbox{\texttt{ out}}  & {\em hash} & hash-\/stack hash value\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+stack hash value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stack_8h_ae0c3fc3bcee4961ad335bd3f29f2486d}\label{stack_8h_ae0c3fc3bcee4961ad335bd3f29f2486d}} 
+\index{stack.h@{stack.h}!StackPop@{StackPop}}
+\index{StackPop@{StackPop}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{StackPop()}{StackPop()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stack_8h_ae08b1e8a0b68c4dd03930dcb7eee61c6}{data\+\_\+t}} Stack\+Pop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_stack}{Stack}} $\ast$}]{stk }\end{DoxyParamCaption})}
+
+Function that describes the process of popping the value of an element from the top of the stack.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em stk} & stk-\/stack pointer \\
+\hline
+\mbox{\texttt{ out}}  & {\em data\+\_\+pop} & data\+\_\+pop-\/value of the element that is popped from the top of the stack\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value of the element that is popped from the top of the stack 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stack_8h_aa254a8caee5e3c7c02f24d17973aff42}\label{stack_8h_aa254a8caee5e3c7c02f24d17973aff42}} 
+\index{stack.h@{stack.h}!StackPush@{StackPush}}
+\index{StackPush@{StackPush}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{StackPush()}{StackPush()}}
+{\footnotesize\ttfamily int Stack\+Push (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_stack}{Stack}} $\ast$}]{stk,  }\item[{\mbox{\hyperlink{stack_8h_ae08b1e8a0b68c4dd03930dcb7eee61c6}{data\+\_\+t}}}]{value }\end{DoxyParamCaption})}
+
+Function that describes the process of pushing an element onto the stack.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em stk} & stk-\/stack pointer \\
+\hline
+\mbox{\texttt{ in}}  & {\em value} & value-\/value of the element that is pushed onto the stack\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stack_8h_aeaeee41154fe8a104eb03786666f85b1}\label{stack_8h_aeaeee41154fe8a104eb03786666f85b1}} 
+\index{stack.h@{stack.h}!StackResize@{StackResize}}
+\index{StackResize@{StackResize}!stack.h@{stack.h}}
+\doxysubsubsection{\texorpdfstring{StackResize()}{StackResize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stack_8h_ae08b1e8a0b68c4dd03930dcb7eee61c6}{data\+\_\+t}} $\ast$ Stack\+Resize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_stack}{Stack}} $\ast$}]{stk }\end{DoxyParamCaption})}
+
+Function that describes the process of changing the stack size.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em stk} & stk-\/stack pointer \\
+\hline
+\mbox{\texttt{ out}}  & {\em new\+\_\+adress} & new\+\_\+adress-\/new stack pointer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+new stack pointer 
+\end{DoxyReturn}

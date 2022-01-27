@@ -1,0 +1,52 @@
+\hypertarget{struct_stack}{}\doxysection{Stack Struct Reference}
+\label{struct_stack}\index{Stack@{Stack}}
+
+
+{\ttfamily \#include $<$stack.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_stack_a72e443b958f5477cf38d3e12b43d40da}\label{struct_stack_a72e443b958f5477cf38d3e12b43d40da}} 
+\mbox{\hyperlink{stack_8h_a075d12d64edef93bf5fcc862a22d26bc}{canary\+\_\+t}} {\bfseries canary\+\_\+left}
+\item 
+\mbox{\Hypertarget{struct_stack_a7b167082a4c6b68566501eaa2423cb3d}\label{struct_stack_a7b167082a4c6b68566501eaa2423cb3d}} 
+int {\bfseries size}
+\item 
+\mbox{\Hypertarget{struct_stack_a9d88966b156fd4547e9b8a2e7fe48427}\label{struct_stack_a9d88966b156fd4547e9b8a2e7fe48427}} 
+int {\bfseries capacity}
+\item 
+\mbox{\Hypertarget{struct_stack_ade1a481ed58d7ecca1418c85767fe190}\label{struct_stack_ade1a481ed58d7ecca1418c85767fe190}} 
+\mbox{\hyperlink{stack_8h_ae08b1e8a0b68c4dd03930dcb7eee61c6}{data\+\_\+t}} $\ast$ {\bfseries data}
+\item 
+\mbox{\Hypertarget{struct_stack_ae7eceb01d9f80fd12397807ebcfeb149}\label{struct_stack_ae7eceb01d9f80fd12397807ebcfeb149}} 
+\mbox{\hyperlink{stack_8h_a22abcc9bf71a7679d5f9076b8b6b33bb}{hash\+\_\+t}} {\bfseries hash}
+\item 
+\mbox{\Hypertarget{struct_stack_a3e07ca6929a768c6a3845be4ee78175a}\label{struct_stack_a3e07ca6929a768c6a3845be4ee78175a}} 
+\mbox{\hyperlink{stack_8h_a075d12d64edef93bf5fcc862a22d26bc}{canary\+\_\+t}} {\bfseries canary\+\_\+right}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure that defines the stack\+: size, capacity, array pointer, hash, canary left and right for protection.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em canary\+\_\+left} & canary\+\_\+left-\/left canary for protection \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & size-\/stack size \\
+\hline
+\mbox{\texttt{ in}}  & {\em capacity} & capacity-\/stack capacity \\
+\hline
+\mbox{\texttt{ in}}  & {\em data} & data-\/pointer to the beginning of the array \\
+\hline
+\mbox{\texttt{ in}}  & {\em hash} & b-\/coefficient \\
+\hline
+\mbox{\texttt{ in}}  & {\em canary\+\_\+right} & canary\+\_\+right-\/left right for protection \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{stack_8h}{stack.\+h}}\end{DoxyCompactItemize}

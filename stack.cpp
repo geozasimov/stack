@@ -148,7 +148,7 @@ data_t StackPop(Stack* stk)
     STACK_POP_ERROR_CHECK();
 
     stk->size--;
-    data_t elem_pop = stk->data[stk->size];
+    data_t data_pop = stk->data[stk->size];
 
     if (stk->size >= stk->capacity)
     {
@@ -161,7 +161,7 @@ data_t StackPop(Stack* stk)
 
     STACK_GENERAL_CHECK(StackErrorCheck(stk));
 
-    return elem_pop;
+    return data_pop;
 }
 
 int StackErrorCheck (Stack* stk)

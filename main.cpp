@@ -22,45 +22,45 @@ int main()
 
 	//printf("%d\n", stk.size);
 
-	int StackAdd(Stack* stk)
-	{
-		data_t a = StackPop(stk);
-		data_t b = StackPop(stk);
+	//int StackAdd(Stack* stk)
+	//{
+	//	data_t a = StackPop(stk);
+	//	data_t b = StackPop(stk);
+	//
+	//	StackPush(stk, a + b);
+	//	
+	//	return 0;
+	//}
 
-		StackPush(stk, a + b);
-		
-		return 0;
-	}
+	//int StackSub(Stack* stk)
+	//{
+	//	data_t a = StackPop(stk);
+	//	data_t b = StackPop(stk);
+	//
+	//	StackPush(stk, a - b);
+	//	
+	//	return 0;
+	//}
 
-	int StackSub(Stack* stk)
-	{
-		data_t a = StackPop(stk);
-		data_t b = StackPop(stk);
+	//int StackMul(Stack* stk)
+	//{
+	//	data_t a = StackPop(stk);
+	//	data_t b = StackPop(stk);
+	//
+	//	StackPush(stk, a * b);
+	//	
+	//	return 0;
+	//}
 
-		StackPush(stk, a - b);
-		
-		return 0;
-	}
-
-	int StackMul(Stack* stk)
-	{
-		data_t a = StackPop(stk);
-		data_t b = StackPop(stk);
-
-		StackPush(stk, a * b);
-		
-		return 0;
-	}
-
-	int StackDiv(Stack* stk)
-	{
-		data_t a = StackPop(stk);
-		data_t b = StackPop(stk);
-
-		StackPush(stk, a / b);
-		
-		return 0;
-	}
+	//int StackDiv(Stack* stk)
+	//{
+	//	data_t a = StackPop(stk);
+	//	data_t b = StackPop(stk);
+	//
+	//	StackPush(stk, a / b);
+	//	
+	//	return 0;
+	//}
 
 	StackDtor(&stk);
 
